@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
 
 :root {
   --navy: #082f52;
@@ -32,6 +32,10 @@ main { overflow: hidden; }
 .main-nav > a:hover::after { width: 100%; }
 .nav-cta { background: white; color: var(--navy); padding: 13px 19px; border-radius: 50px; font-weight: 600; }
 .nav-cta span { margin-left: 8px; color: var(--blue); }
+.language-switcher { display: flex; align-items: center; gap: 2px; padding: 3px; border: 1px solid rgba(255,255,255,.17); border-radius: 30px; direction: ltr; }
+.language-switcher button { width: 29px; height: 27px; border: 0; border-radius: 50%; background: transparent; color: rgba(255,255,255,.58); font-size: 9px; font-weight: 700; cursor: pointer; transition: background .2s, color .2s; }
+.language-switcher button:hover { color: white; }
+.language-switcher button.active { background: white; color: var(--navy); }
 .menu-button { display: none; }
 
 .hero { min-height: 100svh; padding-top: 156px; padding-bottom: 72px; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; position: relative; background: radial-gradient(circle at 74% 44%, rgba(52,160,207,.16), transparent 30%), var(--navy); }
@@ -185,6 +189,14 @@ main { overflow: hidden; }
 .studio-proof p { color: var(--muted); font-size: 14px; line-height: 1.7; max-width: 330px; }
 .studio-footer { background: var(--navy-deep); }
 
+html[dir="rtl"] body { font-family: 'Noto Sans Arabic', sans-serif; }
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] blockquote, html[dir="rtl"] .button { font-family: 'Noto Sans Arabic', sans-serif; letter-spacing: -.025em; }
+html[dir="rtl"] .eyebrow, html[dir="rtl"] .section-kicker, html[dir="rtl"] .card-tag, html[dir="rtl"] .founder-label, html[dir="rtl"] .skill-row span, html[dir="rtl"] .service-types span { letter-spacing: .04em; }
+html[dir="rtl"] .arrow { transform: rotate(180deg); }
+html[dir="rtl"] .arrow.down { transform: rotate(90deg); }
+html[dir="rtl"] .back-home { direction: rtl; letter-spacing: .04em; }
+html[dir="rtl"] .footer-contact, html[dir="rtl"] .founder-profile { text-align: right; }
+
 .join { background: var(--cream); color: var(--ink); padding-top: 130px; padding-bottom: 130px; display: grid; grid-template-columns: 1fr .75fr; gap: 10vw; align-items: center; }
 .join-copy .eyebrow { color: var(--blue); }
 .join-copy h2 { font: 600 clamp(48px, 5.5vw, 78px)/1.04 'Manrope'; letter-spacing: -.055em; margin: 0 0 28px; }
@@ -229,6 +241,7 @@ main { overflow: hidden; }
   .menu-button span { width: 17px; height: 1px; background: white; }
   .menu-button { position: absolute; right: clamp(24px, 6vw, 92px); top: 17px; }
   .main-nav { position: fixed; inset: 0; background: var(--navy-deep); display: flex; flex-direction: column; justify-content: center; font: 600 27px 'Manrope'; opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s; }
+  .main-nav .language-switcher { margin-top: 8px; }
   .main-nav.open { opacity: 1; visibility: visible; }
   .nav-cta { font-size: 15px; margin-top: 10px; }
   .hero { grid-template-columns: 1fr; padding-top: 130px; padding-bottom: 80px; align-content: center; }
@@ -255,6 +268,10 @@ main { overflow: hidden; }
   .footer { grid-template-columns: 1fr 1fr; }
   .footer-contact { grid-column: 2; grid-row: 1; }
   .footer nav { grid-row: 2; }
+}
+
+@media (max-width: 900px) {
+  html[dir="rtl"] .menu-button { right: auto; left: clamp(24px, 6vw, 92px); }
 }
 
 @media (max-width: 580px) {
