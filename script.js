@@ -12,6 +12,22 @@ mainNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', 
 }));
 
 const form = document.querySelector('.join-form');
+
+// Replace this value with the published Google Form URL.
+const WEBSITE_FORM_URL = '';
+const websiteFormLink = document.querySelector('#create-website-link');
+if (websiteFormLink) {
+  if (WEBSITE_FORM_URL) {
+    websiteFormLink.href = WEBSITE_FORM_URL;
+  } else {
+    websiteFormLink.removeAttribute('target');
+    websiteFormLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.alert('The website request form is coming soon.');
+    });
+  }
+}
+
 form?.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(form);
