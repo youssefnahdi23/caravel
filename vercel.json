@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/create-website", "destination": "/create-website.html" }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
