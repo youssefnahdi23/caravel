@@ -7,7 +7,7 @@ const base = import.meta.env.BASE_URL;
 export function Nav({ studio = false }) {
   const [open, setOpen] = useState(false);
   const { t } = useI18n();
-  const homeLink = (hash) => studio ? `${base}${hash}` : hash;
+  const homeLink = (hash) => studio ? `${base}?section=${hash.slice(1)}` : hash;
 
   return (
     <header className={`nav-wrap${studio ? ' service-nav' : ''}`}>
