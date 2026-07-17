@@ -4,7 +4,7 @@ const base = import.meta.env.BASE_URL;
 
 export function Footer({ studio = false }) {
   const { t } = useI18n();
-  const homeLink = (hash = '') => studio ? `${base}${hash}` : hash || '#home';
+  const homeLink = (hash = '') => studio ? `${base}?section=${hash.slice(1)}` : hash || '#home';
   return (
     <footer className={`footer section-pad${studio ? ' studio-footer' : ''}`}>
       <div className="footer-brand"><img src={`${base}assets/caravel-lockup-white.png`} alt="Caravel" /><p>{t('Tunisia builds together.')}</p></div>
