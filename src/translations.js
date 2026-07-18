@@ -296,7 +296,8 @@ export const translations = {
     "Start a conversation": "Démarrer une conversation",
     "The website request form is coming soon.": "Le formulaire de demande de site arrive bientôt.",
     "You're on your way.": "C'est parti.",
-    "Your email app is opening—send the note and Youssef will take it from there.": "Votre application e-mail s'ouvre—envoyez le message et Youssef prendra le relais."
+    "Your email app is opening—send the note and Youssef will take it from there.": "Votre application e-mail s'ouvre—envoyez le message et Youssef prendra le relais.",
+    "Your details were sent. Youssef will contact you soon.": "Vos coordonnées ont été envoyées. Youssef vous contactera bientôt."
   },
   ar: {
     "Caravel — Tunisia builds together": "كارافيل — تونس تبني معًا",
@@ -557,6 +558,7 @@ export const translations = {
     "Start a conversation": "ابدأ محادثة",
     "The website request form is coming soon.": "نموذج طلب الموقع قادم قريبًا.",
     "You're on your way.": "أنت في الطريق الصحيح.",
-    "Your email app is opening—send the note and Youssef will take it from there.": "سيُفتح تطبيق البريد—أرسل الرسالة وسيتولى يوسف الباقي."
+    "Your email app is opening—send the note and Youssef will take it from there.": "سيُفتح تطبيق البريد—أرسل الرسالة وسيتولى يوسف الباقي.",
+    "Your details were sent. Youssef will contact you soon.": "تم إرسال بياناتك. سيتواصل معك يوسف قريبًا."
   }
 };

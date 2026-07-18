@@ -311,6 +311,8 @@ html[dir="rtl"] .footer-contact, html[dir="rtl"] .founder-profile { text-align: 
 .join-form input, .join-form select { width: 100%; border: 0; background: transparent; outline: none; padding: 4px 0 14px; color: var(--ink); font-size: 14px; }
 .join-form input::placeholder { color: #a9b2b8; }
 .join-form .button { width: 100%; margin-top: 8px; }
+.join-form .button:disabled { cursor: wait; opacity: .65; }
+.join-form .request-error { margin: -7px 0 15px; }
 .join-form small { display: block; color: #87939c; text-align: center; font-size: 10px; margin-top: 15px; }
 .form-success { background: white; padding: 55px 42px; text-align: center; }
 .form-success > span { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--mint); margin: 0 auto 20px; font-size: 22px; }
