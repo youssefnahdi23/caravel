@@ -13,7 +13,7 @@ export function Footer({ studio = false }) {
         <a href={homeLink('#story')}>{t('Our story')}</a>
         {!studio && <a href="#what-we-do">{t('What we do')}</a>}
         <a href={homeLink('#founder')}>{t('Founder')}</a>
-        {!studio && <a href={`${base}create-website.html`}>{t('Build a website')}</a>}
+        {!studio && <a href={`${base}create-website.html`}>{t('Build your web/mobile app')}</a>}
         <a href={homeLink('#join')}>{t('Join us')}</a>
       </nav>
       <div className="footer-contact"><span>{t(studio ? 'Start a conversation' : 'Say hello')}</span><a href="mailto:youssefnahdi95@gmail.com">youssefnahdi95@gmail.com</a><p>{t('Nabeul, Tunisia')}</p></div>
