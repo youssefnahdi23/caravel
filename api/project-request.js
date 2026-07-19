@@ -3,6 +3,7 @@ import {
   cleanHeader,
   escapeHtml,
   isEmail,
+  isPhone,
   onlyPost,
   parseBody,
   recentlySubmitted,
@@ -27,19 +28,20 @@ export default async function handler(req, res) {
 
     const name = cleanHeader(body.name, 100);
     const email = clean(body.email, 254).toLowerCase();
+    const phone = clean(body.phone, 30);
     const business = clean(body.business, 100);
     const company = clean(body.company, 120) || '—';
     const packageName = cleanHeader(body.packageName, 150);
     const packagePrice = clean(body.packagePrice, 40);
     const packageSlug = clean(body.packageSlug, 100);
-    if (!name || !isEmail(email) || !business || !packageName || !packageSlug) {
+    if (!name || !isEmail(email) || !isPhone(phone) || !business || !packageName || !packageSlug) {
       return res.status(400).json({ error: 'Invalid form details' });
     }
 
     await sendFormEmail({
       replyTo: { name, address: email },
       subject: `New project request — ${packageName}`,
-      text: `New Caravel Studio project request\n\nPackage: ${packageName}\nStarting from: ${packagePrice}\nName: ${name}\nEmail: ${email}\nBusiness type: ${business}\nBusiness name: ${company}`,
+      text: `New Caravel Studio project request\n\nPackage: ${packageName}\nStarting from: ${packagePrice}\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nBusiness type: ${business}\nBusiness name: ${company}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:620px;margin:auto;color:#0b2b45">
           <div style="background:#082f52;color:#fff;padding:28px 32px"><strong style="font-size:22px">Caravel Studio</strong><p style="margin:8px 0 0;color:#80d1ee">New project enquiry</p></div>
@@ -50,6 +52,7 @@ export default async function handler(req, res) {
             <table style="width:100%;border-collapse:collapse;margin-top:28px">
               <tr><td style="padding:12px 0;border-top:1px solid #d9dfe2;color:#647584">Name</td><td style="padding:12px 0;border-top:1px solid #d9dfe2;text-align:right"><strong>${escapeHtml(name)}</strong></td></tr>
               <tr><td style="padding:12px 0;border-top:1px solid #d9dfe2;color:#647584">Email</td><td style="padding:12px 0;border-top:1px solid #d9dfe2;text-align:right"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
+              <tr><td style="padding:12px 0;border-top:1px solid #d9dfe2;color:#647584">Phone</td><td style="padding:12px 0;border-top:1px solid #d9dfe2;text-align:right"><a href="tel:${escapeHtml(phone)}">${escapeHtml(phone)}</a></td></tr>
               <tr><td style="padding:12px 0;border-top:1px solid #d9dfe2;color:#647584">Business type</td><td style="padding:12px 0;border-top:1px solid #d9dfe2;text-align:right">${escapeHtml(business)}</td></tr>
               <tr><td style="padding:12px 0;border-top:1px solid #d9dfe2;color:#647584">Business name</td><td style="padding:12px 0;border-top:1px solid #d9dfe2;text-align:right">${escapeHtml(company)}</td></tr>
             </table>

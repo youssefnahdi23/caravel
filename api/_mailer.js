@@ -24,6 +24,11 @@ export function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= 254;
 }
 
+export function isPhone(value) {
+  const digits = value.replace(/\D/g, '');
+  return /^[+\d().\s-]+$/.test(value) && digits.length >= 8 && digits.length <= 15;
+}
+
 export function parseBody(req) {
   if (typeof req.body !== 'string') return req.body || {};
   return JSON.parse(req.body || '{}');
