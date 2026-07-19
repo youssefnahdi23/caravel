@@ -66,7 +66,7 @@ function RequestForm({ selected }) {
     try {
       const response = await fetch('/api/project-request', {
         method: 'POST', headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ name: data.get('name'), email: data.get('email'), business: t(data.get('business')), company: data.get('company'), website: data.get('website'), packageName: t(selected.name), packagePrice: selected.price, packageSlug: selected.slug }),
+        body: JSON.stringify({ name: data.get('name'), email: data.get('email'), phone: data.get('phone'), business: t(data.get('business')), company: data.get('company'), website: data.get('website'), packageName: t(selected.name), packagePrice: selected.price, packageSlug: selected.slug }),
       });
       if (response.status === 429) throw new Error('limit');
       if (!response.ok) throw new Error('send');
@@ -82,6 +82,7 @@ function RequestForm({ selected }) {
     <form className="request-form" onSubmit={submit}>
       <label><span>{t('Name')}</span><input ref={firstInput} name="name" type="text" placeholder={t('Your full name')} required /></label>
       <label><span>{t('Email address')}</span><input name="email" type="email" placeholder="you@example.com" required /></label>
+      <label><span>{t('Phone number')}</span><input name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="+216 12 345 678" minLength="8" maxLength="30" required /></label>
       <label><span>{t('Business type')}</span><select name="business" defaultValue="" required><option value="" disabled>{t('Choose one')}</option>{businessTypes.map((type) => <option key={type} value={type}>{t(type)}</option>)}</select></label>
       <label><span>{t('Business name')} <i>{t('Optional')}</i></span><input name="company" type="text" placeholder={t('What is it called?')} /></label>
       <input className="request-hp" name="website" type="text" tabIndex="-1" autoComplete="off" aria-hidden="true" />
