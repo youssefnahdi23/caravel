@@ -104,22 +104,31 @@ function Founder() {
 }
 
 function JoinForm() {
-  const { language, t } = useI18n();
-  const [sent, setSent] = useState(false);
-  function submit(event) {
+  const { t } = useI18n();
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState('');
+
+  async function submit(event) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const name = data.get('name'); const email = data.get('email'); const interest = t(data.get('interest'));
-    const copy = {
-      en: { subject: 'I want to join Caravel', body: `Hi Youssef,\n\nI'm ${name} (${email}) and I'd like to join the Caravel community.\n\nI'm most interested in: ${interest}.\n\nA little about me:\n` },
-      fr: { subject: 'Je souhaite rejoindre Caravel', body: `Bonjour Youssef,\n\nJe m'appelle ${name} (${email}) et je souhaite rejoindre la communauté Caravel.\n\nCe qui m'intéresse le plus : ${interest}.\n\nQuelques mots sur moi :\n` },
-      ar: { subject: 'أرغب في الانضمام إلى كارافيل', body: `مرحبًا يوسف،\n\nأنا ${name} (${email}) وأرغب في الانضمام إلى مجتمع كارافيل.\n\nأكثر ما يهمني: ${interest}.\n\nنبذة عني:\n` },
-    }[language];
-    window.location.href = `mailto:youssefnahdi95@gmail.com?subject=${encodeURIComponent(copy.subject)}&body=${encodeURIComponent(copy.body)}`;
-    setSent(true);
+    setStatus('sending');
+    setError('');
+    try {
+      const response = await fetch('/api/community-join', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ name: data.get('name'), email: data.get('email'), interest: data.get('interest'), website: data.get('website') }),
+      });
+      if (response.status === 429) throw new Error('limit');
+      if (!response.ok) throw new Error('send');
+      setStatus('sent');
+    } catch (sendError) {
+      setError(sendError.message === 'limit' ? t('You can send one request every 24 hours.') : t('We could not send your request. Please try again.'));
+      setStatus('error');
+    }
   }
-  if (sent) return <div className="form-success"><span>✓</span><h3>{t("You're on your way.")}</h3><p>{t('Your email app is opening—send the note and Youssef will take it from there.')}</p></div>;
-  return <form className="join-form" onSubmit={submit}><label><span>{t('Your name')}</span><input name="name" type="text" placeholder={t('How should we call you?')} required /></label><label><span>{t('Email address')}</span><input name="email" type="email" placeholder="you@example.com" required /></label><label><span>{t("I'm most interested in")}</span><select name="interest" defaultValue="" required><option value="" disabled>{t('Choose one')}</option>{['Meeting the community', 'Building a project', 'Sharing my skills', 'Learning and exploring'].map((option) => <option value={option} key={option}>{t(option)}</option>)}</select></label><button className="button button-primary" type="submit">{t('Join the community')} <span>→</span></button><small>{t('No noise. Just meaningful updates and invitations.')}</small></form>;
+  if (status === 'sent') return <div className="form-success" role="status"><span>✓</span><h3>{t("You're on your way.")}</h3><p>{t('Your details were sent. Youssef will contact you soon.')}</p></div>;
+  return <form className="join-form" onSubmit={submit}><label><span>{t('Your name')}</span><input name="name" type="text" placeholder={t('How should we call you?')} maxLength="100" required /></label><label><span>{t('Email address')}</span><input name="email" type="email" placeholder="you@example.com" maxLength="254" required /></label><label><span>{t("I'm most interested in")}</span><select name="interest" defaultValue="" required><option value="" disabled>{t('Choose one')}</option>{['Meeting the community', 'Building a project', 'Sharing my skills', 'Learning and exploring'].map((option) => <option value={option} key={option}>{t(option)}</option>)}</select></label><input className="request-hp" name="website" type="text" tabIndex="-1" autoComplete="off" aria-hidden="true" />{error && <p className="request-error" role="alert">{error}</p>}<button className="button button-primary" type="submit" disabled={status === 'sending'}>{t(status === 'sending' ? 'Sending…' : 'Join the community')} <span>→</span></button><small>{t('No noise. Just meaningful updates and invitations.')}</small></form>;
 }
 
 function Join() {
