@@ -36,7 +36,7 @@ export function parseBody(req) {
 
 function emailConfig() {
   const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_APP_PASSWORD?.replaceAll(' ', '');
+  const pass = process.env.MEMBERSHIP_GMAIL_APP_PASSWORD?.replaceAll(' ', '');
   if (!user || !pass) throw new Error('Gmail is not configured');
 
   return {
@@ -50,7 +50,7 @@ export async function sendFormEmail({ replyTo, subject, html, text }) {
   const { user, recipient } = emailConfig();
   const transporter = nodemailer.createTransport({
     service: 'gmail',
-    auth: { user, pass: process.env.GMAIL_APP_PASSWORD.replaceAll(' ', '') },
+    auth: { user, pass: process.env.MEMBERSHIP_GMAIL_APP_PASSWORD.replaceAll(' ', '') },
   });
 
   await transporter.sendMail({

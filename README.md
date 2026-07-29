@@ -32,7 +32,7 @@ Both the community form and project-request form send server-side email through 
 2. Create a Google **App Password** for Mail. Do not use the account's normal password.
 3. In the Vercel project, open **Settings → Environment Variables** and add:
    - `GMAIL_USER`: the Gmail address used to send notifications
-   - `GMAIL_APP_PASSWORD`: the 16-character Google App Password
+   - `MEMBERSHIP_GMAIL_APP_PASSWORD`: the 16-character Google App Password
    - `FORM_RECIPIENT_EMAIL`: the inbox that should receive submissions (optional; defaults to `GMAIL_USER`)
    - `FORM_SECRET`: a long random string used to sign rate-limit cookies (recommended)
 4. Redeploy after adding the variables.
