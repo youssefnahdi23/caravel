@@ -3,6 +3,8 @@ import { Footer } from '../components/Footer';
 import { Arrow, Spark } from '../components/Icons';
 import { useI18n } from '../components/I18nContext';
 import { Nav } from '../components/Nav';
+import { PromoBanner } from '../components/PromoBanner';
+import { usePromoStatus } from '../promo';
 
 const base = import.meta.env.BASE_URL;
 
@@ -137,5 +139,6 @@ function Join() {
 }
 
 export function HomePage() {
-  return <main><Nav /><Hero /><Ticker /><Story /><WhatWeDo /><Path /><Founder /><Join /><Footer /></main>;
+  const promo = usePromoStatus();
+  return <main><PromoBanner promo={promo} /><Nav /><Hero /><Ticker /><Story /><WhatWeDo /><Path /><Founder /><Join /><Footer /></main>;
 }
