@@ -17,7 +17,7 @@ export function Nav({ studio = false }) {
         <a href={homeLink('#story')} onClick={() => setOpen(false)}>{t('Our story')}</a>
         <a href={homeLink('#what-we-do')} onClick={() => setOpen(false)}>{t('What we do')}</a>
         <a href={homeLink('#founder')} onClick={() => setOpen(false)}>{t('Founder')}</a>
-        {!studio && <a href={`${base}create-website.html`} onClick={() => setOpen(false)}>{t('Build a website')}</a>}
+        {!studio && <a href={`${base}create-website.html`} onClick={() => setOpen(false)}>{t('Build your web/mobile app')}</a>}
         <LanguageSwitcher />
         <a href={homeLink('#join')} onClick={() => setOpen(false)} className="nav-cta">{t('Join the crew')} <span>↗</span></a>
       </nav>
