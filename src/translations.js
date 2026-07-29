@@ -298,7 +298,14 @@ export const translations = {
     "The website request form is coming soon.": "Le formulaire de demande de site arrive bientôt.",
     "You're on your way.": "C'est parti.",
     "Your email app is opening—send the note and Youssef will take it from there.": "Votre application e-mail s'ouvre—envoyez le message et Youssef prendra le relais.",
-    "Your details were sent. Youssef will contact you soon.": "Vos coordonnées ont été envoyées. Youssef vous contactera bientôt."
+    "Your details were sent. Youssef will contact you soon.": "Vos coordonnées ont été envoyées. Youssef vous contactera bientôt.",
+    "Launch offer": "Offre de lancement",
+    "15% off every package — 20% off our most popular picks.": "15 % de réduction sur chaque offre — 20 % sur nos formules les plus demandées.",
+    "Ends in": "Se termine dans",
+    "days": "jours",
+    "hours": "heures",
+    "minutes": "minutes",
+    "See the offers": "Voir les offres"
   },
   ar: {
     "Caravel — Tunisia builds together": "كارافيل — تونس تبني معًا",
@@ -561,6 +568,13 @@ export const translations = {
     "The website request form is coming soon.": "نموذج طلب الموقع قادم قريبًا.",
     "You're on your way.": "أنت في الطريق الصحيح.",
     "Your email app is opening—send the note and Youssef will take it from there.": "سيُفتح تطبيق البريد—أرسل الرسالة وسيتولى يوسف الباقي.",
-    "Your details were sent. Youssef will contact you soon.": "تم إرسال بياناتك. سيتواصل معك يوسف قريبًا."
+    "Your details were sent. Youssef will contact you soon.": "تم إرسال بياناتك. سيتواصل معك يوسف قريبًا.",
+    "Launch offer": "عرض الانطلاق",
+    "15% off every package — 20% off our most popular picks.": "خصم 15% على كل الباقات — وخصم 20% على أكثر باقاتنا طلبًا.",
+    "Ends in": "ينتهي خلال",
+    "days": "يوم",
+    "hours": "ساعة",
+    "minutes": "دقيقة",
+    "See the offers": "شاهد العروض"
   }
 };
